@@ -1,0 +1,569 @@
+/* Base and reset */
+body, html {
+    margin: 0; padding: 0;
+    height: 100vh;
+    overflow: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #fef6f6;
+    position: relative;
+}
+
+.hearts-container {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.heart {
+    position: absolute;
+    color: #ff4a73;
+    opacity: 0.7;
+    user-select: none;
+    animation-name: floatUp;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(100vh) scale(1);
+        opacity: 0;
+    }
+    50% {
+        transform: translateY(50vh) scale(1.1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(0) scale(0.8);
+        opacity: 0;
+    }
+}
+
+.container {
+    position: relative;
+    z-index: 1;
+    width: 350px;
+    background: #ffffffdd;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border-radius: 15px;
+    padding: 30px 40px;
+    text-align: center;
+    animation: fadeInScale 1s ease forwards;
+    margin: auto;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Override default container for flower mode */
+.flower-mode {
+    width: 100vw !important;
+    height: 100vh !important;
+    max-width: none !important;
+    margin: 0 !important;
+    top: 0 !important;
+    left: 0 !important;
+    transform: none !important;
+    border-radius: 0 !important;
+    background: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    text-align: center !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@keyframes fadeInScale {
+    0% {
+        opacity: 0;
+        transform: translateY(-50%) scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(-50%) scale(1);
+    }
+}
+
+/* Lock breathing */
+.lock-icon {
+    font-size: 40px;
+    margin-bottom: 15px;
+    color: #ff4a73;
+    display: inline-block;
+    animation: breathe 3s ease-in-out infinite;
+}
+
+@keyframes breathe {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.15);
+        opacity: 0.8;
+    }
+}
+
+/* Initial form styling */
+h1 {
+    margin: 0 0 8px 0;
+    color: #ff4a73;
+    font-weight: 700;
+}
+
+p {
+    margin: 0 0 20px 0;
+    color: #666;
+    font-weight: 500;
+}
+
+label {
+    font-weight: 600;
+    display: block;
+    text-align: left;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #333;
+}
+
+input[type="date"] {
+    width: 100%;
+    padding: 10px 15px;
+    border-radius: 30px;
+    border: 1.5px solid #ddd;
+    font-size: 16px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+input[type="date"]:focus {
+    outline: none;
+    border-color: #ff4a73;
+}
+
+button {
+    width: 100%;
+    background: #ff4a73;
+    border: none;
+    padding: 12px 0;
+    border-radius: 30px;
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background: #e43f64;
+}
+
+.footer-text {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #aaa;
+}
+
+/* Choices page grid */
+
+.choices-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 140px);
+    grid-gap: 25px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* Each choice button */
+.choice-button {
+    border: 3px solid #a1394c;
+    border-radius: 15px;
+    padding: 20px 0;
+    font-size: 50px;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.3s, transform 0.2s;
+    background: white;
+    color: #a1394c;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.choice-button:hover {
+    background-color: #ff4a73;
+    color: white;
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(255, 74, 115, 0.5);
+}
+
+/* Heading on choices page */
+h2 {
+    color: #a1394c;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+p.subtext {
+    color: #555;
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+/* Cake container and candles */
+
+.breathe {
+    display: inline-block;
+    animation: breathe 3s ease-in-out infinite;
+}
+
+.candles-container {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.candle-emoji {
+    font-size: 36px;
+    margin: 0 6px;
+    user-select: none;
+}
+
+.cake-icon {
+    font-size: 120px;
+    color: #6F4E37; /* chocolate brown */
+    margin-bottom: 15px;
+    position: relative;
+}
+
+/* Blow Candle & Back to Choices buttons */
+#blowCandleBtn {
+    width: 180px;
+    background: #ff4a73;
+    color: white;
+    border: none;
+    padding: 12px 0;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 15px;
+}
+
+#blowCandleBtn:hover:not(:disabled) {
+    background: #e43f64;
+}
+
+#blowCandleBtn:disabled {
+    cursor: default;
+    background: #cc657d;
+    color: #eee;
+}
+
+#backToChoicesBtn {
+    width: 180px;
+    background: #4CAF50; /* Green color */
+    color: white;
+    border: none;
+    padding: 12px 0;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 12px;
+}
+
+#backToChoicesBtn:hover {
+    background: #388E3C; /* Darker green on hover */
+}
+
+/* Flower page styling */
+/* Flower page full horizontal layout with overlapping phrases */
+
+.flower-bouquet-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    width: 100%;
+    height: 100%;
+    padding: 0 40px;
+    box-sizing: border-box;
+    background: transparent; /* ← Change this line to white */
+    position: relative;
+}
+
+
+.flower-texts.side {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex: 1 1 300px;
+    max-width: 35vw;
+    /* Overlap effect with transparency */
+    border: 1.5px solid #d1546a;
+    border-radius: 25px;
+    padding: 25px 20px;
+    box-shadow: 0 5px 15px rgba(209, 84, 106, 0.2);
+    backdrop-filter: blur(5px);
+    position: relative;
+    top: 20px; /* slight vertical offset for design */
+}
+
+.flower-text-box {
+    color: #8c3644;
+    font-size: 1.05em;
+    font-weight: 600;
+    line-height: 1.5;
+    padding: 12px 15px;
+    box-shadow: inset 0 1px 3px #f9b7c8;
+    border-radius: 18px;
+    background-color: #ffe6ec;
+    transition: transform 0.25s ease;
+}
+
+.flower-text-box:hover {
+    transform: scale(1.08);
+    box-shadow: 0 8px 20px rgba(209, 84, 106, 0.6);
+    cursor: default;
+}
+
+.flower-image-container {
+    flex: 0 0 500px;
+    max-width: 500px;
+    position: relative;
+    z-index: 1;
+}
+
+.flower-image-container img {
+    width: 100%;
+    height: auto;
+    border-radius: 40px;
+    box-shadow: 0 20px 60px rgba(209, 84, 106, 0.7);
+    position: relative;
+    z-index: 2;
+    user-select: none;
+}
+
+/* Back to Choices Button */
+.back-to-choices-btn {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 220px;
+    padding: 15px 0;
+    border: none;
+    border-radius: 30px;
+    background-color: #d1546a;
+    color: white;
+    font-weight: 700;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    user-select: none;
+    z-index: 1000;
+}
+
+.back-to-choices-btn:hover {
+    background-color: #a53649;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 1100px) {
+    .flower-bouquet-wrapper {
+        gap: 30px;
+        padding: 0 20px;
+    }
+    .flower-image-container {
+        flex: 0 0 400px;
+        max-width: 400px;
+    }
+}
+
+@media (max-width: 800px) {
+    .flower-bouquet-wrapper {
+        flex-direction: column;
+        padding-top: 80px;
+        height: auto;
+        overflow-x: visible;
+    }
+
+    .flower-texts.side {
+        max-width: 100%;
+        width: 90vw;
+        top: 0;
+        margin-bottom: 30px;
+    }
+
+    .flower-image-container {
+        max-width: 350px;
+        margin-bottom: 40px;
+    }
+
+    .back-to-choices-btn {
+        position: relative;
+        bottom: auto;
+        left: auto;
+        transform: none;
+        margin: 0 auto 40px;
+    }
+}
+
+/* Full-width dedicated flower page container */
+.flower-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background-color: #e8e5dc;
+    overflow-x: hidden;
+    overflow-y: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    padding: 0;
+    margin: 0;
+    animation: fadeIn 0.8s ease forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.98); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* Scroll container with fixed size, center, and scroll */
+.letter-scroll {
+    width: 90vw;
+    max-width: 600px;
+    height: 75vh;
+    background: #f5f5dc;
+    border-radius: 20px;
+    box-shadow: 0 12px 25px rgba(0,0,0,0.3);
+    overflow-y: auto;
+    padding: 24px 30px;
+    margin: 0 auto;
+    font-family: 'Times New Roman', serif;
+}
+
+/* Letter content text */
+.letter-in-scroll p {
+    text-align: justify;
+    margin: 16px 0;
+    font-size: 16px;
+    color: #333;
+}
+
+/* Back button */
+.letter-back-button {
+    display: block;
+    width: 200px;
+    margin: 20px auto 40px;
+    padding: 12px 0;
+    border-radius: 30px;
+    background: #ff4a73;
+    color: white;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.letter-back-button:hover {
+    background: #e43f64;
+}
+
+.polaroid-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    justify-content: center;
+    padding: 20px;
+    max-width: 100vw;
+    overflow-y: auto;
+    max-height: 80vh; /* contained visible area, scroll appears if needed */
+}
+
+.polaroid {
+    background: transparent;  /* remove white background */
+    padding: 0;               /* remove white frame padding */
+    border-radius: 0;         /* remove white frame rounding */
+    box-shadow: 5px 10px 15px rgba(0,0,0,0.2); /* optional base shadow */
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.polaroid:hover {
+    box-shadow: 10px 15px 25px rgba(0,0,0,0.35);
+    transform: scale(1.05);
+}
+
+.polaroid img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 0;
+    display: block;
+}
+
+
+/* Scrollbar style for gallery */
+.polaroid-gallery::-webkit-scrollbar {
+    height: 8px;
+}
+
+.polaroid-gallery::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 74, 115, 0.6);
+    border-radius: 4px;
+}
+
+.polaroid-gallery::-webkit-scrollbar-track {
+    background-color: rgba(255, 74, 115, 0.1);
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+    .polaroid {
+        width: 140px;
+    }
+
+    .polaroid img {
+        height: 110px;
+    }
+}
+
+.photo-modal {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(0,0,0,0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+}
+
+.photo-modal .modal-content {
+    max-width: 90vw;
+    max-height: 90vh;
+    border-radius: 8px;
+    box-shadow: 0 0 30px rgba(255,74,115,0.8);
+    user-select: none;
+}
+
+.photo-modal .close-modal {
+    position: fixed;
+    top: 20px;
+    right: 30px;
+    font-size: 40px;
+    color: white;
+    cursor: pointer;
+    user-select: none;
+    font-weight: bold;
+    z-index: 10001;
+}
